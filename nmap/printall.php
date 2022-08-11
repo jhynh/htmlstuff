@@ -15,9 +15,19 @@ $spoofer=$conn->prepare("CREATE TABLE IF NOT EXISTS `ip_status` ( `ip` varchar(1
 //$spoofer=$conn->prepare("CREATE TABLE IF NOT EXISTS `ip_status` ( `ip` varchar(15), PRIMARY KEY (`ip`), `status` varchar(4), `name` varchar(255), `date` DATE)DEFAULT CHARSET=utf8mb4");
 $check=$conn->prepare("select 1 from `ip_status`");
 //if table exists, drop it firsts
-
+if($spoofer){
+    echo "<a>table exists😂</a>";
+}else {
+    echo "<a>table doesn't exist😂</a>";
+}
 $dropper->execute();
 $spoofer->execute();
+//-------------------------------------------------------------------
+
+//create temporary table and shove everything in. Afterwards, compare between the existing and new one
+//to determine the change in time
+//$initTmp= $conn->prepare("create ");
+
 //-------------------------------------------------------------------
 
 $sql="INSERT INTO ip_status (ip, status, name, last_active, up_time, down_time) VALUES (?,?,?,?,?,?)";
@@ -69,7 +79,8 @@ for($i =0 ; $i<256; $i++){
         }
     }
 //-------------------------print_IP-----------------------------------
-    if($state === "up"){
+//$nakedIp=str_replace('.','',$ip);    
+if($state === "up"){
         echo "<td class=\"available\">".$ip."</td>";
     }else{
         echo "<td class=\"unavailable\">".$ip."</td>";

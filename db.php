@@ -1,7 +1,7 @@
 <?php include 'config.php';
 
 class Database{
-    
+
     private static $conn;
 
     function __construct(){
