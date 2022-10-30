@@ -1,4 +1,4 @@
-some html files alongside an sql database from an internship I've done
+random stuff i did during an internship
 
 # htmlstuff
 //adding new files  
